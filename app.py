@@ -1,15 +1,13 @@
-from flask import Flask,render_template,request
+from flask import Flask, render_template, request
 
-
-app =Flask(__name__)
-
+app = Flask(__name__)
 
 @app.route('/')
 def index():
     return '''
         <html>
         <body>
-            <form action="/greet" methods="POST">
+            <form action="/greet" method="POST">
                 Enter your name: <input type="text" name="username">
                 <input type="submit" value="Submit">
             </form>
@@ -17,13 +15,10 @@ def index():
         </html>
     '''
 
-@app.route('/greet',methods=['POST'])
+@app.route('/greet', methods=['POST'])
 def greet():
-    user_input=request.form['UserName']
-    return f"Hello {user_input},Welcome to this app for Docker Demonstration."\
-    
+    user_input = request.form['username']  # Lowercase 'username' here
+    return f"Hello {user_input}, Welcome to this app for Docker Demonstration."
 
-
-
-if __name__ =='__main__':
-    app.run(host='0.0.0.0',port=5000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
